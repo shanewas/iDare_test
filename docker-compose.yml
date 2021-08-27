@@ -4,7 +4,9 @@ services:
   django:
     build: .
     container_name: django
-    command: python manage.py runserver 0.0.0.0:8000
+    command: >
+      sh -c " python3 manage.py migrate && 
+              python3 manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/usr/src/tasks/
     ports:

@@ -17,11 +17,11 @@
   var socket = new WebSocket("ws://localhost:8000/ws/status/");
 
   socket.onmessage = function (event) {
-    var data = JSON.parse(event.data);
+    var data = event.data
     console.log(data);
     var task = document.querySelector("#task_1");
-    task.setAttribute("style", "width: " + data.message + "%");
-    task.setAttribute("aria-valuenow", data.message);
+    task.setAttribute("style", "width: " + data + "%");
+    task.setAttribute("aria-valuenow", data);
   };
 </script>
 

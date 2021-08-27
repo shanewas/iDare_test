@@ -1,12 +1,15 @@
-from channels.generic.websocket import WebsocketConsumer
-import json
-from time import sleep
+from channels.generic.websocket import AsyncWebsocketConsumer
 
 
-class WSConsumer(WebsocketConsumer):
-    def connect(self):
-        self.accept()
+class WSConsumer(AsyncWebsocketConsumer):
+    async def connect(self):
+        await self.accept()
+        await self.channel_layer.group_add('tasks', self.channel_name)
 
-        for i in range(10):
-            self.send(json.dumps({'message': i + 1}))
-            sleep(1)
+    async def disconnect(self):
+        await self.channel_layer.group_discard('tasks', self.channel_name)
+
+    async def send_percentage(self, event):
+        percentage = event['text']
+
+        await self.send(percentage)
