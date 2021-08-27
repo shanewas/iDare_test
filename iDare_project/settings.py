@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -69,7 +70,9 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'iDare_project.wsgi.application'
+ASGI_APPLICATION = "iDare_project.asgi.application"
 
+CELERY_BROKER_URL = 'redis://localhost:6379'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
