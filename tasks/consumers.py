@@ -11,5 +11,4 @@ class WSConsumer(AsyncWebsocketConsumer):
 
     async def send_percentage(self, event):
         percentage = event['text']
-
         await self.send(percentage)

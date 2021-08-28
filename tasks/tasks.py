@@ -9,7 +9,7 @@ channel_layer = get_channel_layer()
 
 @shared_task
 def my_task():
-    print(channel_layer)
-    # for i in range(100):
-    #     async_to_sync(channel_layer.group_send)(
-    #         'tasks', {'type': 'send_percentage', 'text': i})
+    for i in range(100):
+        sleep(1)
+        async_to_sync(channel_layer.group_send)(
+            'tasks', {'type': 'send_percentage', 'text': f'{i}'})

@@ -5,3 +5,5 @@ celery
 channels
 channels-redis
 asgiref
+asyncio
+websockets==9.1
